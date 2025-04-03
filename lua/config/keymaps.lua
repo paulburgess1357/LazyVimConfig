@@ -14,8 +14,5 @@ vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase w
 vim.keymap.set("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 
-local diagnostics = require("config.diagnostics_config")
-vim.keymap.set("n", "gl", diagnostics.toggle_line_diagnostics, { noremap = true, silent = true })
-
 -- Upper left of file:
 vim.keymap.set("n", "gg", "1G0", { desc = "Go to top of file at column 0" })
