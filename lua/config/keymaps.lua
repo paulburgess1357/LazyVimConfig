@@ -16,3 +16,13 @@ vim.keymap.set("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window hei
 
 -- Upper left of file:
 vim.keymap.set("n", "gg", "1G0", { desc = "Go to top of file at column 0" })
+
+-- Toggle diagnostics window
+vim.keymap.set("n", "gl", function()
+  vim.diagnostic.open_float(0, {
+    scope = "line",
+    border = "rounded",
+    focusable = false,
+    close_events = { "CursorMoved", "InsertEnter", "BufHidden" },
+  })
+end, { noremap = true, silent = true, desc = "Show diagnostics for current line" })
