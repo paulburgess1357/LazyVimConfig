@@ -4,11 +4,13 @@ return {
     ---------------------------------------------------------------------------
     -- 🔧 Config setting for whitespace mode
     ---------------------------------------------------------------------------
-    local CLEAN_WHITESPACE_MODE = "all" -- "all" or "modified"
+    local CLEAN_WHITESPACE_MODE = "modified" -- "all" or "modified"
 
     ---------------------------------------------------------------------------
     -- 🧼 Whitespace cleanup on save
     ---------------------------------------------------------------------------
+    -- hi
+    -- there
 
     local function remove_all_whitespace()
       local view = vim.fn.winsaveview()
