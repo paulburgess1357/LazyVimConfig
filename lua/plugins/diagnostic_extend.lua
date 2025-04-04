@@ -4,7 +4,7 @@ return {
     ---------------------------------------------------------------------------
     -- 🔧 Config setting for whitespace mode
     ---------------------------------------------------------------------------
-    local CLEAN_WHITESPACE_MODE = "modified" -- "all" or "modified"
+    local CLEAN_WHITESPACE_MODE = "modified" -- "all" or "modified"  all works; modifid does not (and is super slow); gitsigns DOES work though
 
     ---------------------------------------------------------------------------
     -- 🧼 Whitespace cleanup on save
