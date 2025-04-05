@@ -1,11 +1,17 @@
 return {
   "ibhagwan/fzf-lua",
-  -- optional for icon support
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     files = {
-      hidden = false, -- Exclude hidden files
+      hidden = false,
     },
-    winopts = { fullscreen = false },
+    keymap = {
+      builtin = {
+        true,
+        ["<C-d>"] = "preview-page-down",
+        ["<C-u>"] = "preview-page-up",
+      },
+      fzf = { true },
+    },
   },
 }
