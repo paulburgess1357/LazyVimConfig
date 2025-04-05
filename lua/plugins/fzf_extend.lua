@@ -6,5 +6,6 @@ return {
     files = {
       hidden = false, -- Exclude hidden files
     },
+    winopts = { fullscreen = false },
   },
 }
