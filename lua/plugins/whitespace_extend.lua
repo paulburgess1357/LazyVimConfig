@@ -4,7 +4,7 @@ return {
     ---------------------------------------------------------------------------
     -- 🔧 Config setting for whitespace mode
     ---------------------------------------------------------------------------
-    local CLEAN_WHITESPACE_MODE = "modified" -- "all" or "modified"  all works; modifid does not (and is super slow); gitsigns DOES work though
+    local CLEAN_WHITESPACE_MODE = "all" -- "all" or "modified"  all works; modifid does not (and is super slow); gitsigns DOES work though
 
     ---------------------------------------------------------------------------
     -- 🧼 Whitespace cleanup on save
@@ -19,21 +19,22 @@ return {
     end
 
     local function remove_modified_whitespace()
-      local bufnr = vim.api.nvim_get_current_buf()
-      local changed_lines = vim.fn["gitsigns"].get_hunks and vim.fn["gitsigns"].get_hunks()
-      if not changed_lines then
+      local gs = require("gitsigns")
+      local hunks = gs.get_hunks()
+      if not hunks then
         return
       end
 
-      for _, hunk in ipairs(changed_lines) do
-        for i = hunk.added.start, hunk.added.start + hunk.added.count - 1 do
-          local line = vim.fn.getline(i)
-          local trimmed = line:gsub("%s+$", "")
-          if line ~= trimmed then
-            vim.fn.setline(i, trimmed)
-          end
+      local view = vim.fn.winsaveview()
+      for _, hunk in ipairs(hunks) do
+        local start_line = hunk.added.start
+        local count = hunk.added.count
+        if count > 0 then
+          local end_line = start_line + count - 1
+          vim.cmd(string.format("%d,%ds/\\s\\+$//e", start_line, end_line))
         end
       end
+      vim.fn.winrestview(view)
     end
 
     local function on_save()
