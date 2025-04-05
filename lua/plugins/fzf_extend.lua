@@ -17,7 +17,7 @@ return {
         ["C-k"] = "up",
         ["C-j"] = "down",
       },
-      fzf = { true },
+      fzf = { true, ["ctrl-q"] = "abort" },
     },
   },
 }
