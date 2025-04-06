@@ -32,7 +32,8 @@ return {
       hidden = false,
       actions = {
         -- add a mapping so that Ctrl+l also opens the selected file
-        ["ctrl-l"] = require("fzf-lua").actions.file_edit_or_qf,
+        ["ctrl-l"] = require("fzf-lua.actions").file_edit,
+        ["default"] = require("fzf-lua.actions").file_edit,
       },
     },
     keymap = {
