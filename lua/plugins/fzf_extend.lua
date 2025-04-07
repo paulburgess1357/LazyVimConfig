@@ -20,7 +20,7 @@ return {
         ["C-k"] = "up",
         ["C-j"] = "down",
       },
-      fzf = { true, ["ctrl-q"] = "abort" },
+      fzf = { true, ["ctrl-q"] = "abort", ["ctrl-l"] = "accept" },
     },
   },
 }
