@@ -1,6 +1,4 @@
 -- TODO:
 -- 1) Better smart indents
--- 2) Fix fzf keys
--- 3) update keybindings for mini to also accept ctrl-dir stuff (similar to fzf)
 -- 4) debug testings
 -- 5) tags? meaning i can tag something and find later? similar to bookmark?
