@@ -2,3 +2,4 @@
 -- 1) Better smart indents -- need to test the vim smart indents
 -- 4) debug testings
 -- 5) tags? meaning i can tag something and find later? similar to bookmark?
+-- disable caps lock in normal mode?
