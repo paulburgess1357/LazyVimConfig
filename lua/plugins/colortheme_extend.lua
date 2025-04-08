@@ -1,7 +1,7 @@
 return {
-  { "ellisonleao/gruvbox.nvim" },
+  { "rebelot/kanagawa.nvim" },
   {
     "LazyVim/LazyVim",
-    opts = { colorscheme = "gruvbox" },
+    opts = { colorscheme = "kanagawa-wave" }, -- kanagawa-wave, kanagawa-dragon, kanagawa-lotus
   },
 }
