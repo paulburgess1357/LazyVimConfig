@@ -3,3 +3,4 @@
 -- Add any additional options here
 
 vim.opt.autoindent = true
+vim.opt.list = false -- show whitespace characters
