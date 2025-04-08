@@ -3,3 +3,4 @@
 -- 4) debug testings
 -- 5) tags? meaning i can tag something and find later? similar to bookmark?
 -- disable caps lock in normal mode?
+-- add scrollbar so I can visually tell where i am in a file?
