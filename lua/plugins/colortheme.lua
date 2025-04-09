@@ -36,23 +36,4 @@ return {
       return opts
     end,
   },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    config = function(_, opts)
-      -- Add this chunk to set more visible window separators
-      local wk = require("which-key")
-      wk.setup(opts)
-      -- Set up thicker window separators
-      vim.opt.fillchars = {
-        horiz = "━",
-        horizup = "┻",
-        horizdown = "┳",
-        vert = "┃",
-        vertleft = "┫",
-        vertright = "┣",
-        verthoriz = "╋",
-      }
-    end,
-  },
 }
