@@ -7,6 +7,7 @@ return {
       size = 0.3, -- fallback width: 30% of editor
     },
   },
+  keys = {},
   config = function(_, opts)
     local trouble = require("trouble")
 
