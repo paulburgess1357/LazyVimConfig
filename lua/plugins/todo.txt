@@ -1,5 +1,3 @@
 -- TODO:
 -- 4) debug testings
 -- 5) tags? Meaning i can tag something and find later? Similar to bookmark?
--- add scrollbar so I can visually tell where i am in a file?
--- lazygit config
