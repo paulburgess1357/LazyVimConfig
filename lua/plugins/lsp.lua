@@ -7,6 +7,8 @@ return {
     diagnostics = {
       virtual_text = false,
       signs = true,
+      underline = true,
+      severity_sort = true,
       float = {
         border = "rounded",
         format = function(diagnostic)
@@ -17,6 +19,7 @@ return {
         end,
       },
     },
+
     servers = {
       pyright = {},
     },
