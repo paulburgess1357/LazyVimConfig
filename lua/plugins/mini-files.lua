@@ -24,7 +24,6 @@ return {
     },
   },
   opts = {
-    mappings = {},
     windows = {
       width_nofocus = 20,
       width_focus = 50,
@@ -34,4 +33,15 @@ return {
       use_as_default_explorer = true,
     },
   },
+  config = function(_, opts)
+    require("mini.files").setup(opts)
+
+    -- Add Enter key mapping to do the same as 'l'
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesBufferCreate",
+      callback = function(args)
+        vim.keymap.set("n", "<CR>", "l", { buffer = args.data.buf_id, remap = true })
+      end,
+    })
+  end,
 }
