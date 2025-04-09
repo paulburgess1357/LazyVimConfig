@@ -1,5 +1,3 @@
--- TODO: Need to update fzf grep search to open files with my keymaps also
-
 return {
   "ibhagwan/fzf-lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -147,8 +145,21 @@ return {
 
     marks = {
       actions = {
-        ["default"] = require("fzf-lua.actions").file_edit,
-        ["ctrl-l"] = require("fzf-lua.actions").file_edit,
+        -- Replace file_edit with a custom action for marks
+        ["default"] = function(selected)
+          -- This explicitly jumps to the selected mark
+          local mark = selected[1]:match("[a-zA-Z0-9']")
+          if mark then
+            vim.cmd("normal! `" .. mark)
+          end
+        end,
+        ["ctrl-l"] = function(selected)
+          -- Same behavior for ctrl-l
+          local mark = selected[1]:match("[a-zA-Z0-9']")
+          if mark then
+            vim.cmd("normal! `" .. mark)
+          end
+        end,
       },
     },
 
