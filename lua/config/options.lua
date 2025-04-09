@@ -4,3 +4,4 @@
 
 vim.opt.autoindent = true
 vim.opt.list = false -- show whitespace characters
+vim.opt.winbar = "%=%m %f"
