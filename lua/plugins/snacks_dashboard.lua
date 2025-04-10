@@ -36,8 +36,8 @@ return {
     vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = logo_color, bg = bg_color }) -- New logo color
     vim.api.nvim_set_hl(0, "SnacksDashboardFooter", { fg = "#7E9CD8", bg = bg_color }) -- Wave Blue
     vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = "#DCA561", bg = bg_color }) -- Roninc Yellow
-    vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = "#FFA066", bg = bg_color }) -- Autumn Yellow
-    vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = "#957FB8", bg = bg_color }) -- Light Purple
+    vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = "#E6C384", bg = bg_color }) -- Carp Yellow
+    vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = "#E6C384", bg = bg_color }) -- Carp Yellow
     vim.api.nvim_set_hl(0, "SnacksDashboardDir", { fg = "#76946A", bg = bg_color }) -- Directory paths
     vim.api.nvim_set_hl(0, "SnacksDashboardFile", { fg = "#C8C093", bg = bg_color }) -- File names
     --vim.api.nvim_set_hl(0, "SnacksDashboardKeyDesc", { fg = "#E6C384", bg = bg_color }) -- Warm Yellow
