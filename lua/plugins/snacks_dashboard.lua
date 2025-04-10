@@ -40,6 +40,6 @@ return {
     vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = "#957FB8", bg = bg_color }) -- Light Purple
     vim.api.nvim_set_hl(0, "SnacksDashboardDir", { fg = "#76946A", bg = bg_color }) -- Directory paths
     vim.api.nvim_set_hl(0, "SnacksDashboardFile", { fg = "#C8C093", bg = bg_color }) -- File names
-    vim.api.nvim_set_hl(0, "SnacksDashboardKeyDesc", { fg = "#E6C384", bg = bg_color }) -- Warm Yellow
+    --vim.api.nvim_set_hl(0, "SnacksDashboardKeyDesc", { fg = "#E6C384", bg = bg_color }) -- Warm Yellow
   end,
 }
