@@ -1,5 +1,6 @@
 return {
-  "nvim-lua/plenary.nvim",
+  "dummy_plugin",
+  dir = ".",
   lazy = false,
   config = function()
     local user_config = require("user_config.config")
