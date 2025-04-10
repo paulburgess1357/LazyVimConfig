@@ -6,7 +6,7 @@ return {
         theme = {
           wave = {
             ui = {
-              bg = "#16161D", -- Your darker background color
+              bg = "#16161D",
               bg_gutter = "#16161D",
             },
           },

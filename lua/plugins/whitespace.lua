@@ -1,16 +1,17 @@
 return {
   "nvim-lua/plenary.nvim",
   config = function()
-    ---------------------------------------------------------------------------
-    -- 🔧 Config setting for whitespace mode
-    ---------------------------------------------------------------------------
-    local CLEAN_WHITESPACE_MODE = "all" -- "all" or "modified"  all works; modifid does not (and is super slow); gitsigns DOES work though
+    local user_config = require("user_config.config")
 
     ---------------------------------------------------------------------------
-    -- 🧼 Whitespace cleanup on save
+    --  Config setting for whitespace mode
     ---------------------------------------------------------------------------
-    -- hi
-    -- there
+    -- local CLEAN_WHITESPACE_MODE = user_config.clean_whitespace_mode
+    local CLEAN_WHITESPACE_MODE = "all"
+
+    ---------------------------------------------------------------------------
+    -- Whitespace cleanup on save
+    ---------------------------------------------------------------------------
 
     local function remove_all_whitespace()
       local view = vim.fn.winsaveview()
