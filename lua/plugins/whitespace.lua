@@ -1,13 +1,14 @@
 return {
   "nvim-lua/plenary.nvim",
+  lazy = false,
   config = function()
     local user_config = require("user_config.config")
+    vim.notify("🔥 whitespace plugin config loaded")
 
     ---------------------------------------------------------------------------
     --  Config setting for whitespace mode
     ---------------------------------------------------------------------------
-    -- local CLEAN_WHITESPACE_MODE = user_config.clean_whitespace_mode
-    local CLEAN_WHITESPACE_MODE = "all"
+    local CLEAN_WHITESPACE_MODE = user_config.clean_whitespace_mode
 
     ---------------------------------------------------------------------------
     -- Whitespace cleanup on save
@@ -39,6 +40,8 @@ return {
     end
 
     local function on_save()
+      vim.notify("🔥 on_save triggered with mode: " .. CLEAN_WHITESPACE_MODE)
+
       if CLEAN_WHITESPACE_MODE == "all" then
         remove_all_whitespace()
       elseif CLEAN_WHITESPACE_MODE == "modified" then
