@@ -54,10 +54,5 @@ return {
       pattern = "*",
       callback = on_save,
     })
-
-    vim.api.nvim_create_user_command("ToggleWhitespaceMode", function()
-      CLEAN_WHITESPACE_MODE = (CLEAN_WHITESPACE_MODE == "all") and "modified" or "all"
-      vim.notify("Whitespace cleanup mode: " .. CLEAN_WHITESPACE_MODE)
-    end, {})
   end,
 }
