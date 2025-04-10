@@ -20,6 +20,9 @@ return {
 
           -- Visual selection:
           Visual = { bg = colors.palette.carpYellow, fg = colors.palette.sumiInk0 },
+
+          -- Replace purples in UI-like areas with warm yellows
+          Keyword = { fg = colors.palette.autumnYellow },
         }
       end,
     },
