@@ -50,44 +50,32 @@ return {
       vim.fn.winrestview(view)
     end
 
-    -- Toggle functions for which-key
-    local function toggle_autoformat_global()
-      vim.g.autoformat = not vim.g.autoformat
-      vim.notify("Global autoformat: " .. tostring(vim.g.autoformat))
-    end
+    -- Create a module to expose the toggle functions
+    _G.WhitespaceToggles = {
+      toggle_autoformat_global = function()
+        vim.g.autoformat = not vim.g.autoformat
+        vim.notify("Global autoformat: " .. tostring(vim.g.autoformat))
+      end,
 
-    local function toggle_autoformat_buffer()
-      vim.b.autoformat = not (vim.b.autoformat or vim.g.autoformat)
-      vim.notify("Buffer autoformat: " .. tostring(vim.b.autoformat))
-    end
+      toggle_autoformat_buffer = function()
+        vim.b.autoformat = not (vim.b.autoformat or vim.g.autoformat)
+        vim.notify("Buffer autoformat: " .. tostring(vim.b.autoformat))
+      end,
 
-    local function toggle_clean_mode()
-      if _G.CLEAN_WHITESPACE_MODE == "all" then
-        _G.CLEAN_WHITESPACE_MODE = "modified"
-      else
-        _G.CLEAN_WHITESPACE_MODE = "all"
-      end
-      vim.notify("Clean whitespace mode: " .. _G.CLEAN_WHITESPACE_MODE)
-    end
+      toggle_clean_mode = function()
+        if _G.CLEAN_WHITESPACE_MODE == "all" then
+          _G.CLEAN_WHITESPACE_MODE = "modified"
+        else
+          _G.CLEAN_WHITESPACE_MODE = "all"
+        end
+        vim.notify("Clean whitespace mode: " .. _G.CLEAN_WHITESPACE_MODE)
+      end,
 
-    local function toggle_trim_blank_lines()
-      _G.TRIM_TRAILING_BLANK_LINES = not _G.TRIM_TRAILING_BLANK_LINES
-      vim.notify("Trim trailing blank lines: " .. tostring(_G.TRIM_TRAILING_BLANK_LINES))
-    end
-
-    ---------------------------------------------------------------------------
-    -- Register with which-key
-    ---------------------------------------------------------------------------
-    local wk = require("which-key")
-    wk.register({
-      ["<leader>z"] = {
-        name = "+Whitespace",
-        a = { toggle_autoformat_global, "Toggle Autoformat (Global)" },
-        b = { toggle_autoformat_buffer, "Toggle Autoformat (Buffer)" },
-        m = { toggle_clean_mode, "Toggle Clean Mode (all/modified)" },
-        t = { toggle_trim_blank_lines, "Toggle Trim Trailing Blank Lines" },
-      },
-    })
+      toggle_trim_blank_lines = function()
+        _G.TRIM_TRAILING_BLANK_LINES = not _G.TRIM_TRAILING_BLANK_LINES
+        vim.notify("Trim trailing blank lines: " .. tostring(_G.TRIM_TRAILING_BLANK_LINES))
+      end,
+    }
 
     ---------------------------------------------------------------------------
     -- Autocommand
