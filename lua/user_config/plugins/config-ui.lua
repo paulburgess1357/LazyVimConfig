@@ -9,28 +9,6 @@ return {
         { "<leader>z", group = "User Config" },
 
         {
-          "<leader>za",
-          function()
-            _G.WhitespaceToggles.toggle_autoformat_global()
-          end,
-          desc = function()
-            local val = vim.g.autoformat and "on" or "off"
-            return "Toggle Autoformat (Global: " .. val .. ")"
-          end,
-        },
-
-        {
-          "<leader>zb",
-          function()
-            _G.WhitespaceToggles.toggle_autoformat_buffer()
-          end,
-          desc = function()
-            local val = vim.b.autoformat and "on" or "off"
-            return "Toggle Autoformat (Buffer: " .. val .. ")"
-          end,
-        },
-
-        {
           "<leader>zm",
           function()
             _G.WhitespaceToggles.toggle_clean_mode()
