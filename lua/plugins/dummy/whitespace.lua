@@ -65,6 +65,8 @@ return {
       toggle_clean_mode = function()
         if _G.CLEAN_WHITESPACE_MODE == "all" then
           _G.CLEAN_WHITESPACE_MODE = "modified"
+        elseif _G.CLEAN_WHITESPACE_MODE == "modified" then
+          _G.CLEAN_WHITESPACE_MODE = "none"
         else
           _G.CLEAN_WHITESPACE_MODE = "all"
         end
@@ -87,10 +89,12 @@ return {
       elseif _G.CLEAN_WHITESPACE_MODE == "modified" then
         remove_modified_whitespace()
       end
+
       if _G.TRIM_TRAILING_BLANK_LINES then
         remove_trailing_blank_lines()
       end
     end
+
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*",
       callback = on_save,
