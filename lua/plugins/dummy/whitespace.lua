@@ -4,7 +4,7 @@ return {
   lazy = false,
   config = function()
     local user_config = require("user_config.config")
-    vim.notify("🔥 Whitespace plugin config loaded")
+    --vim.notify("🔥 Whitespace plugin config loaded")
     ---------------------------------------------------------------------------
     -- Global config vars (for runtime mutation via UI)
     ---------------------------------------------------------------------------

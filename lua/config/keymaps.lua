@@ -26,3 +26,8 @@ vim.keymap.set("n", "gl", function()
     close_events = { "CursorMoved", "InsertEnter", "BufHidden" },
   })
 end, { noremap = true, silent = true, desc = "Show diagnostics for current line" })
+
+-- Faster J and K:
+-- Move down two lines with Shift + J
+vim.keymap.set("n", "J", "3j", { noremap = true, silent = true })
+vim.keymap.set("n", "K", "3k", { noremap = true, silent = true })
