@@ -7,12 +7,16 @@ return {
         return {
           -- Make window borders much more visible
           WinSeparator = { fg = colors.palette.autumnYellow, bold = true },
-
           -- Visual selection:
           Visual = { bg = colors.palette.carpYellow, fg = colors.palette.sumiInk0 },
-
           -- Replace purples in UI-like areas with warm yellows
           Keyword = { fg = colors.palette.autumnYellow },
+
+          -- Add popup menu colors
+          Pmenu = { fg = colors.palette.fujiWhite, bg = colors.palette.sumiInk2 },
+          PmenuSel = { fg = colors.palette.sumiInk0, bg = colors.palette.autumnYellow },
+          PmenuSbar = { bg = colors.palette.sumiInk1 },
+          PmenuThumb = { bg = colors.palette.autumnYellow },
         }
       end,
     },
