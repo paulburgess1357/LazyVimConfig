@@ -1,7 +1,7 @@
 local M = {}
 
--- To test: :lua print(require("user_config.config").clean_whitespace_mode)
+-- Initial values that are picked up and assigned to _G by the plugin on startup
 M.clean_whitespace_mode = "modified" -- "all" or "modified"
-M.trim_trailing_blank_lines = true
+M.trim_trailing_blank_lines = true -- true or false
 
 return M

@@ -5,17 +5,14 @@ return {
   config = function()
     local user_config = require("user_config.config")
     vim.notify("🔥 Whitespace plugin config loaded")
-
     ---------------------------------------------------------------------------
-    -- Config settings
+    -- Global config vars (for runtime mutation via UI)
     ---------------------------------------------------------------------------
-    local CLEAN_WHITESPACE_MODE = user_config.clean_whitespace_mode
-    local TRIM_TRAILING_BLANK_LINES = user_config.trim_trailing_blank_lines
-
+    _G.CLEAN_WHITESPACE_MODE = user_config.clean_whitespace_mode
+    _G.TRIM_TRAILING_BLANK_LINES = user_config.trim_trailing_blank_lines
     ---------------------------------------------------------------------------
     -- Helpers
     ---------------------------------------------------------------------------
-
     local function remove_trailing_blank_lines()
       local last_line = vim.fn.line("$")
       while last_line > 1 and vim.fn.getline(last_line):match("^%s*$") do
@@ -41,7 +38,6 @@ return {
       if not hunks then
         return
       end
-
       local view = vim.fn.winsaveview()
       for _, hunk in ipairs(hunks) do
         local start_line = hunk.added.start
@@ -54,24 +50,59 @@ return {
       vim.fn.winrestview(view)
     end
 
-    ---------------------------------------------------------------------------
-    -- Autocommand and toggle
-    ---------------------------------------------------------------------------
+    -- Toggle functions for which-key
+    local function toggle_autoformat_global()
+      vim.g.autoformat = not vim.g.autoformat
+      vim.notify("Global autoformat: " .. tostring(vim.g.autoformat))
+    end
 
+    local function toggle_autoformat_buffer()
+      vim.b.autoformat = not (vim.b.autoformat or vim.g.autoformat)
+      vim.notify("Buffer autoformat: " .. tostring(vim.b.autoformat))
+    end
+
+    local function toggle_clean_mode()
+      if _G.CLEAN_WHITESPACE_MODE == "all" then
+        _G.CLEAN_WHITESPACE_MODE = "modified"
+      else
+        _G.CLEAN_WHITESPACE_MODE = "all"
+      end
+      vim.notify("Clean whitespace mode: " .. _G.CLEAN_WHITESPACE_MODE)
+    end
+
+    local function toggle_trim_blank_lines()
+      _G.TRIM_TRAILING_BLANK_LINES = not _G.TRIM_TRAILING_BLANK_LINES
+      vim.notify("Trim trailing blank lines: " .. tostring(_G.TRIM_TRAILING_BLANK_LINES))
+    end
+
+    ---------------------------------------------------------------------------
+    -- Register with which-key
+    ---------------------------------------------------------------------------
+    local wk = require("which-key")
+    wk.register({
+      ["<leader>z"] = {
+        name = "+Whitespace",
+        a = { toggle_autoformat_global, "Toggle Autoformat (Global)" },
+        b = { toggle_autoformat_buffer, "Toggle Autoformat (Buffer)" },
+        m = { toggle_clean_mode, "Toggle Clean Mode (all/modified)" },
+        t = { toggle_trim_blank_lines, "Toggle Trim Trailing Blank Lines" },
+      },
+    })
+
+    ---------------------------------------------------------------------------
+    -- Autocommand
+    ---------------------------------------------------------------------------
     local function on_save()
-      vim.notify("🔥 on_save triggered with mode: " .. CLEAN_WHITESPACE_MODE)
-
-      if CLEAN_WHITESPACE_MODE == "all" then
+      vim.notify("🔥 on_save triggered with mode: " .. tostring(_G.CLEAN_WHITESPACE_MODE))
+      if _G.CLEAN_WHITESPACE_MODE == "all" then
         remove_all_whitespace()
-      elseif CLEAN_WHITESPACE_MODE == "modified" then
+      elseif _G.CLEAN_WHITESPACE_MODE == "modified" then
         remove_modified_whitespace()
       end
-
-      if TRIM_TRAILING_BLANK_LINES then
+      if _G.TRIM_TRAILING_BLANK_LINES then
         remove_trailing_blank_lines()
       end
     end
-
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*",
       callback = on_save,
