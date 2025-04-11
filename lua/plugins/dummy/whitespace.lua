@@ -4,38 +4,34 @@ return {
   lazy = false,
   config = function()
     local user_config = require("user_config.config")
-    vim.notify("🔥 whitespace plugin config loaded")
+    vim.notify("🔥 Whitespace plugin config loaded")
 
     ---------------------------------------------------------------------------
-    --  Config setting for whitespace mode
+    -- Config settings
     ---------------------------------------------------------------------------
     local CLEAN_WHITESPACE_MODE = user_config.clean_whitespace_mode
     local TRIM_TRAILING_BLANK_LINES = user_config.trim_trailing_blank_lines
 
     ---------------------------------------------------------------------------
-    -- Whitespace cleanup on save
+    -- Helpers
     ---------------------------------------------------------------------------
+
+    local function remove_trailing_blank_lines()
+      local last_line = vim.fn.line("$")
+      while last_line > 1 and vim.fn.getline(last_line):match("^%s*$") do
+        local second_last_line = vim.fn.getline(last_line - 1)
+        if second_last_line:match("^%s*$") then
+          vim.api.nvim_buf_set_lines(0, last_line - 1, last_line, false, {})
+          last_line = last_line - 1
+        else
+          break
+        end
+      end
+    end
 
     local function remove_all_whitespace()
       local view = vim.fn.winsaveview()
-
-      -- Remove trailing whitespace from each line
       vim.cmd([[%s/\s\+$//e]])
-
-      -- Optionally remove blank lines at the end of the file
-      if TRIM_TRAILING_BLANK_LINES then
-        local last_line = vim.fn.line("$")
-        while last_line > 1 and vim.fn.getline(last_line):match("^%s*$") do
-          local second_last_line = vim.fn.getline(last_line - 1)
-          if second_last_line:match("^%s*$") then
-            vim.api.nvim_buf_set_lines(0, last_line - 1, last_line, false, {})
-            last_line = last_line - 1
-          else
-            break
-          end
-        end
-      end
-
       vim.fn.winrestview(view)
     end
 
@@ -58,6 +54,10 @@ return {
       vim.fn.winrestview(view)
     end
 
+    ---------------------------------------------------------------------------
+    -- Autocommand and toggle
+    ---------------------------------------------------------------------------
+
     local function on_save()
       vim.notify("🔥 on_save triggered with mode: " .. CLEAN_WHITESPACE_MODE)
 
@@ -65,6 +65,10 @@ return {
         remove_all_whitespace()
       elseif CLEAN_WHITESPACE_MODE == "modified" then
         remove_modified_whitespace()
+      end
+
+      if TRIM_TRAILING_BLANK_LINES then
+        remove_trailing_blank_lines()
       end
     end
 
